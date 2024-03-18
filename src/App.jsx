@@ -406,22 +406,22 @@ export default function App() {
     switch (direction) {
       case "right":
         if (xPosition < boundaries.xAxis.max) {
-          xPosition += 1
+          xPosition += 5
         }
         break;
       case "left":
         if (xPosition > boundaries.xAxis.min) {
-          xPosition -= 1;
+          xPosition -= 5;
         }
         break;
       case "down":
         if (yPosition < boundaries.yAxis.max) {
-          yPosition += 1;
+          yPosition += 5;
         }
         break;
       case "up":
         if (yPosition > boundaries.yAxis.min) {
-          yPosition -= 1;
+          yPosition -= 5;
         }
         break;
       default:
