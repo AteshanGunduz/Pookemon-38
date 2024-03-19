@@ -1,30 +1,20 @@
-
-
-
 export default function NavButtons({
   mouseHandler,
   wantsToMove,
   direction,
   escaped,
-  handleClick
 }) {
   function handleLeave(event) {
     if (wantsToMove) {
       mouseHandler(event)
     }
   }
-
-
-
-
-
   return (
     <div className='navigation-buttons-container'>
       <button
         onMouseDown={mouseHandler}
         onMouseUp={mouseHandler}
         onMouseLeave={handleLeave}
-        onClick={()=>handleClick("left")}
         className={`navigation-button left ${
           wantsToMove && direction === 'left' ? 'active' : ''
         }`}
@@ -34,7 +24,6 @@ export default function NavButtons({
         onMouseDown={mouseHandler}
         onMouseUp={mouseHandler}
         onMouseLeave={handleLeave}
-        onClick={()=>handleClick("right")}
         className={`navigation-button right ${
           wantsToMove && direction === 'right' ? 'active' : ''
         }`}
@@ -45,7 +34,6 @@ export default function NavButtons({
         onMouseDown={mouseHandler}
         onMouseUp={mouseHandler}
         onMouseLeave={handleLeave}
-        onClick={()=>handleClick("up")}
         className={`navigation-button up ${
           wantsToMove && !escaped && direction === 'up' ? 'active' : ''
         }`}
@@ -55,7 +43,6 @@ export default function NavButtons({
         onMouseDown={mouseHandler}
         onMouseUp={mouseHandler}
         onMouseLeave={handleLeave}
-        onClick={()=>handleClick("down")}
         className={`navigation-button down ${
           wantsToMove && direction === 'down' ? 'active' : ''
         }`}

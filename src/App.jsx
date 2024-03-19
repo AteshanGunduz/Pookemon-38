@@ -400,35 +400,47 @@ export default function App() {
 		3. Görevi tamamladığınızda, hapishanenin sınırları içinde kalırken ekrandaki yön tuşlarını veya klavyenizdeki ok tuşlarını kullanarak Pookachu'yu herhangi bir yöne hareket ettirebilmelisiniz. Ayrıca A ve B tuşlarını kullanarak kapıyı patlatırsanız hapishaneden kaçabilmeniz gerekiyor
 */
 
-  function updatePosition(direction) {
-    let { xPosition, yPosition } = pookachu;
+function updatePosition() {
+    setPookachu((prevPookachu) => {
+      let newXPosition = prevPookachu.xPosition;
+      let newYPosition = prevPookachu.yPosition;
 
-    switch (direction) {
-      case "right":
-        if (xPosition < boundaries.xAxis.max) {
-          xPosition += 5
-        }
-        break;
-      case "left":
-        if (xPosition > boundaries.xAxis.min) {
-          xPosition -= 5;
-        }
-        break;
-      case "down":
-        if (yPosition < boundaries.yAxis.max) {
-          yPosition += 5;
-        }
-        break;
-      case "up":
-        if (yPosition > boundaries.yAxis.min) {
-          yPosition -= 5;
-        }
-        break;
-      default:
-        break;
-    }
-    setPookachu({ ...pookachu, xPosition, yPosition })
+      switch (prevPookachu.direction) {
+        case "right":
+          newXPosition = Math.min(
+            prevPookachu.xPosition + 1,
+            boundaries.xAxis.max
+          );
+          break;
+        case "left":
+          newXPosition = Math.max(
+            prevPookachu.xPosition - 1,
+            boundaries.xAxis.min
+          );
+          break;
+        case "down":
+          newYPosition = Math.min(
+            prevPookachu.yPosition + 1,
+            boundaries.yAxis.max
+          );
+          break;
+        case "up":
+          newYPosition = Math.max(
+            prevPookachu.yPosition - 1,
+            boundaries.yAxis.min
+          );
+          break;
+        default:
+          break;
+      }
+      return {
+        ...prevPookachu,
+        xPosition: newXPosition,
+        yPosition: newYPosition,
+      };
+    });
   }
+
 
   return (
     <div
